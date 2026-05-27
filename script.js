@@ -20,6 +20,18 @@ function submitForm(e) {
         btn.classList.remove('success');
     }, 3000);
 }
+function toggleOtherBasis(select) {
+    const group = document.getElementById('other-basis-group');
+    const textarea = document.getElementById('other-basis-text');
+    if (select.value === 'other') {
+        group.style.display = 'block';
+        textarea.required = true;
+    } else {
+        group.style.display = 'none';
+        textarea.required = false;
+        textarea.value = '';
+    }
+}
 
 document.addEventListener('click', function(e) {
     const menu = document.getElementById('mobileMenu');
