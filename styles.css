@@ -33,25 +33,72 @@
   .nav-cta { background: var(--gold); color: var(--blue) !important; padding: 8px 20px; border-radius: 25px; font-weight: 700 !important; transition: all 0.3s !important; }
   .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(191,150,115,0.4); }
 
-  /* LANG SWITCHER */
+ /* LANG SWITCHER */
   .lang-switcher { display: flex; gap: 4px; align-items: center; margin-left: 10px; }
   .lang-btn {
     background: transparent; border: 1px solid rgba(255,255,255,0.25);
     color: rgba(255,255,255,0.6); font-size: 0.72rem; font-weight: 700;
     padding: 4px 9px; border-radius: 12px; cursor: pointer;
     font-family: 'Raleway', sans-serif; letter-spacing: 0.5px;
-    transition: all 0.2s;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden;
   }
-  .lang-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--blue); }
+  .lang-btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--gold); border-radius: 12px;
+    transform: scale(0); opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
+    z-index: -1;
+  }
+  .lang-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+  .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--blue); box-shadow: 0 3px 10px rgba(191,150,115,0.4); transform: translateY(-1px); }
+  .lang-btn.active::after { transform: scale(1); opacity: 1; }
+
+  /* LANG FADE ANIMATION */
+  @keyframes langFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .lang-fade [data-i18n], .lang-fade [data-i18n-placeholder] {
+    animation: langFadeIn 0.3s ease forwards;
+  }
 
   .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
-  .burger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
-  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: var(--blue); padding: 20px 5%; z-index: 999; border-bottom: 2px solid var(--gold); flex-direction: column; gap: 0; }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.3s; }
+  .burger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    top: 70px; left: 0; right: 0;
+    background: var(--blue);
+    padding: 0 5%;
+    z-index: 999;
+    border-bottom: 2px solid var(--gold);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease,
+                transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.3s ease;
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 20px 5%;
+    pointer-events: all;
+  }
+  .mobile-menu a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.3s, transform 0.2s; }
   .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu a:hover { color: var(--gold); transform: translateX(4px); }
   .mobile-lang { display: flex; gap: 8px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .mobile-lang .lang-btn { font-size: 0.8rem; padding: 5px 12px; }
 
