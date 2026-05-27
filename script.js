@@ -402,6 +402,6 @@ const observer = new IntersectionObserver((entries) => {
             observer.unobserve(entry.target);
         }
     });
-}, { threshold: 0.35 });
+}, { threshold: 0.05 });
 
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
