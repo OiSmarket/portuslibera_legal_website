@@ -557,43 +557,39 @@
                     <input type="email" placeholder="ivan@email.com">
                 </div>
                 <div class="form-group">
-                    <label>Услуга *</label>
-                    <select required>
-                        <option value="">— Выберите услугу —</option>
-                        <optgroup label="Карта побыта">
-                            <option>Консультация «С чего начать»</option>
-                            <option>Подготовка документов</option>
-                            <option>Сопровождение подачи</option>
-                            <option>Пакет «Под ключ»</option>
-                        </optgroup>
-                        <optgroup label="Водительские права">
-                            <option>Консультация</option>
-                            <option>Пакет «Под ключ»</option>
-                        </optgroup>
-                        <optgroup label="Резидентство / Гражданство">
-                            <option>Консультация</option>
-                            <option>Пакет «Под ключ»</option>
-                        </optgroup>
-                        <optgroup label="Мельдунек">
-                            <option>Пакет «Под ключ»</option>
-                            <option>Пакет + наш адрес</option>
-                        </optgroup>
-                        <optgroup label="Умейсцование">
-                            <option>Пакет «Под ключ»</option>
-                        </optgroup>
-                        <optgroup label="Аренда жилья">
-                            <option>Пакет «Под ключ»</option>
-                        </optgroup>
-                        <optgroup label="Другое">
-                            <option>Онлайн-консультация</option>
-                            <option>Чек-лист по картам побыта</option>
-                            <option>Чек-лист по переезду</option>
-                        </optgroup>
-                    </select>
-                </div>
+    <label>Услуга *</label>
+    <select required>
+        <option value="">— Выберите категорию —</option>
+        <option value="pobyt">🏠 Карта побыта</option>
+        <option value="prava">🚗 Водительское удостоверение</option>
+        <option value="rezid">🏛️ Резидентство / Гражданство</option>
+        <option value="meld">📍 Мельдунек</option>
+        <option value="umejsc">📄 Умейсцование</option>
+        <option value="arenda">🏡 Аренда жилья</option>
+        <option value="online">💻 Онлайн-консультация</option>
+        <option value="chek">✅ Чек-листы</option>
+    </select>
+</div>
                 <div class="form-group">
-                    <label>Комментарий</label>
-                    <textarea placeholder="Опишите вашу ситуацию..."></textarea>
+                    <label>Основание пребывания в Польше *</label>
+    <select id="basis-select" required onchange="toggleOtherBasis(this)">
+        <option value="">— Выберите основание —</option>
+        <option value="visa_work">🛂 Рабочая виза (D-тип)</option>
+        <option value="visa_tourist">✈️ Туристическая виза (C-тип)</option>
+        <option value="bezwizowo">🆓 Безвизовый въезд</option>
+        <option value="karta_pobyt">🏠 Карта побыта (временная)</option>
+        <option value="karta_staly">🏛️ Карта побыта (постоянная)</option>
+        <option value="karta_rezyd">🇪🇺 Карта резидента ЕС</option>
+        <option value="ochrona">🛡️ Временная защита (УКР)</option>
+        <option value="azyl">📋 Статус беженца / убежище</option>
+        <option value="student">🎓 Студенческая виза / учёба</option>
+        <option value="other">❓ Другое</option>
+    </select>
+</div>
+
+<div class="form-group" id="other-basis-group" style="display:none;">
+    <label>Опишите ваше основание *</label>
+    <textarea id="other-basis-text" placeholder="Опишите вашу ситуацию подробнее..." rows="3"></textarea>
                 </div>
                 <button type="submit" class="submit-btn" id="submitBtn">
                     Отправить заявку →
