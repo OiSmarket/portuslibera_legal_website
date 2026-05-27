@@ -316,41 +316,44 @@ function setLang(lang) {
   currentLang = lang;
   const t = translations[lang];
 
+  document.body.style.transition = 'opacity 0.25s ease';
+  document.body.style.opacity = '50%';
+
+  setTimeout(() => {
+
   // Update all data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) {
-      el.innerHTML = t[key];
-    }
-  });
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
 
   // Update placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (t[key] !== undefined) {
-      el.placeholder = t[key];
-    }
-  });
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
 
   // Update lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.textContent.trim().toLowerCase() === lang) btn.classList.add('active');
-  });
+      btn.classList.remove('active');
+      if (btn.textContent.trim().toLowerCase() === lang) btn.classList.add('active');
+    });
 
   // Update html lang
   document.documentElement.lang = lang;
 
   // Update submit button if success state
   const btn = document.getElementById('submitBtn');
-  if (!btn.classList.contains('success')) {
-    btn.textContent = t['form_submit'];
-  }
+    if (!btn.classList.contains('success')) btn.textContent = t['form_submit'];
+    document.body.style.opacity = '1';
+  }, 250);
 }
 
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
+  const burger = document.querySelector('.burger');
   menu.classList.toggle('open');
+  burger.classList.toggle('open');
 }
 
 function showTab(id) {
