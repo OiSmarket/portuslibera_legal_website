@@ -398,10 +398,21 @@ document.addEventListener('click', function(e) {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            // Если у элемента есть соседи с таким же классом внутри контейнера
+            const parent = entry.target.parentElement;
+            const cousins = parent.querySelectorAll('.stagger-item');
+            
+            if (cousins.length > 0) {
+                // Находим индекс элемента, чтобы высчитать задержку
+                const index = Array.from(cousins).indexOf(entry.target);
+                entry.target.style.transitionDelay = `${index * 0.1}s`;
+            }
+
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
         }
     });
-}, { threshold: 0.05 });
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+// Следим и за обычными анимациями, и за каскадными
+document.querySelectorAll('.animate-on-scroll, .stagger-item').forEach(el => observer.observe(el));
