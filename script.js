@@ -85,7 +85,7 @@ const translations = {
     cta_h2: "Готовы начать?", cta_p: "Оставьте заявку сейчас и получите бесплатную первичную консультацию",
     cta_btn1: "Оставить заявку →", cta_btn2: "📞 Позвонить нам",
     cont_h3: "Свяжитесь с нами", cont_p: "Оставьте заявку и мы свяжемся с вами в течение 1 часа в рабочее время",
-    cont_phone_label: "Телефон / WhatsApp", cont_email_label1: "Email — Лена", cont_email_label2: "Email — Марина",
+    cont_phone_label: "Телефон", cont_email_label1: "Email — Лена", cont_email_label2: "Email",
     cont_addr_label: "Адрес", cont_hours_label: "Часы работы", cont_hours_val: "Пн–Пт: 09:00–17:00",
     form_h3: "Оставить заявку", form_name: "Ваше имя *", form_name_ph: "Иван Иванов",
     form_phone: "Телефон *", form_email: "Email", form_email_ph: "ivan@email.com",
@@ -98,7 +98,7 @@ const translations = {
     basis_student: "🎓 Студенческая виза / учёба", basis_other: "❓ Другое",
     form_other_label: "Опишите ваше основание *", form_other_ph: "Опишите вашу ситуацию подробнее...",
     form_submit: "Отправить заявку →", form_success: "✓ Заявка отправлена!",
-    footer_brand_p: "Профессиональная помощь в легализации иностранцев в Польше. NIP: 8513239756",
+    footer_brand_p: "Профессиональная помощь в легализации иностранцев в Польше",
     footer_serv: "Услуги", footer_company: "Компания", footer_contacts: "Контакты",
     footer_copy: "© 2025 PORTUS LIBERA Sp. z o.o. Все права защищены."
   },
@@ -188,7 +188,7 @@ const translations = {
     cta_h2: "Готові почати?", cta_p: "Залиште заявку зараз і отримайте безкоштовну первинну консультацію",
     cta_btn1: "Залишити заявку →", cta_btn2: "📞 Зателефонувати нам",
     cont_h3: "Зв'яжіться з нами", cont_p: "Залиште заявку і ми зв'яжемося з вами протягом 1 години в робочий час",
-    cont_phone_label: "Телефон / WhatsApp", cont_email_label1: "Email — Лена", cont_email_label2: "Email — Марина",
+    cont_phone_label: "Телефон", cont_email_label1: "Email — Лена", cont_email_label2: "Email",
     cont_addr_label: "Адреса", cont_hours_label: "Години роботи", cont_hours_val: "Пн–Пт: 09:00–17:00",
     form_h3: "Залишити заявку", form_name: "Ваше ім'я *", form_name_ph: "Іван Іванов",
     form_phone: "Телефон *", form_email: "Email", form_email_ph: "ivan@email.com",
@@ -201,7 +201,7 @@ const translations = {
     basis_student: "🎓 Студентська віза / навчання", basis_other: "❓ Інше",
     form_other_label: "Опишіть вашу підставу *", form_other_ph: "Опишіть вашу ситуацію детальніше...",
     form_submit: "Надіслати заявку →", form_success: "✓ Заявку надіслано!",
-    footer_brand_p: "Професійна допомога в легалізації іноземців у Польщі. NIP: 8513239756",
+    footer_brand_p: "Професійна допомога в легалізації іноземців у Польщі",
     footer_serv: "Послуги", footer_company: "Компанія", footer_contacts: "Контакти",
     footer_copy: "© 2025 PORTUS LIBERA Sp. z o.o. Всі права захищені."
   },
@@ -291,7 +291,7 @@ const translations = {
     cta_h2: "Ready to Start?", cta_p: "Submit an application now and get a free initial consultation",
     cta_btn1: "Submit Application →", cta_btn2: "📞 Call Us",
     cont_h3: "Contact Us", cont_p: "Submit an application and we will contact you within 1 hour during business hours",
-    cont_phone_label: "Phone / WhatsApp", cont_email_label1: "Email — Lena", cont_email_label2: "Email — Marina",
+    cont_phone_label: "Phone", cont_email_label1: "Email — Lena", cont_email_label2: "Email",
     cont_addr_label: "Address", cont_hours_label: "Working Hours", cont_hours_val: "Mon–Fri: 09:00–17:00",
     form_h3: "Submit Application", form_name: "Your Name *", form_name_ph: "John Smith",
     form_phone: "Phone *", form_email: "Email", form_email_ph: "john@email.com",
@@ -304,7 +304,7 @@ const translations = {
     basis_student: "🎓 Student Visa / Studies", basis_other: "❓ Other",
     form_other_label: "Describe your basis *", form_other_ph: "Describe your situation in more detail...",
     form_submit: "Submit Application →", form_success: "✓ Application Submitted!",
-    footer_brand_p: "Professional assistance in legalizing foreigners in Poland. NIP: 8513239756",
+    footer_brand_p: "Professional assistance in legalizing foreigners in Poland",
     footer_serv: "Services", footer_company: "Company", footer_contacts: "Contacts",
     footer_copy: "© 2025 PORTUS LIBERA Sp. z o.o. All rights reserved."
   }
