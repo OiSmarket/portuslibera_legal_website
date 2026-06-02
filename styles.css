@@ -13,7 +13,7 @@
      -webkit-touch-callout: none;}
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Open Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; padding: 0 4%; box-sizing: border-box;}
+  body { font-family: 'Avino Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; padding: 0 4%; box-sizing: border-box; max-width: 100%;position: relative;}
   h1, h2, h3, h4 { font-family: 'Raleway', sans-serif;}
 
 /* Базовый класс для каскадной задержки */
