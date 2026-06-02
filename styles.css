@@ -300,9 +300,19 @@
     .burger { display: flex; }
     section { padding: 60px 4%; }
     .hero {
-        background-image: url('download (30).png');
+        background-image: url('download (29).png');
         background-position: top center;
     padding: 90px 4% 50px; }
+      .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(6, 18, 82,0.25); /* Темный фильтр 50% */
+    z-index: 1;
+}
     .hero h1 { font-size: 1.9rem; }
     .hero p { font-size: 0.95rem; }
     .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
