@@ -294,7 +294,7 @@
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
-    nav { padding: 0 15px; width: 100vw; box-sizing: border-box; }
+    nav { width: 100vw; box-sizing: border-box; }
     .nav-links { display: none; }
     .burger { display: flex; }
     section { padding: 60px 4%; }
