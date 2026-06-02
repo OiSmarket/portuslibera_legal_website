@@ -92,7 +92,8 @@
     animation: langFadeIn 0.3s ease forwards;
   }
 
-  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; flex-shrink: 0; /* Запрещает сжатие */
+    margin-right: 0; /* Убирает лишний отступ справа */}
   .burger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
   .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
