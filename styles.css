@@ -295,7 +295,10 @@
     .nav-links { display: none; }
     .burger { display: flex; }
     section { padding: 60px 4%; }
-    .hero { padding: 90px 4% 50px; }
+    .hero {
+        background-image: url('download (30).png');
+        background-position: top center;
+    padding: 90px 4% 50px; }
     .hero h1 { font-size: 1.9rem; }
     .hero p { font-size: 0.95rem; }
     .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
