@@ -9,9 +9,6 @@
     --text: #1a1a2e;
     --text-light: #6b7280;
   }
-* {
-    outline: 1px solid red;
-}
   * {-webkit-tap-highlight-color: transparent;
      -webkit-touch-callout: none;}
   * { margin: 0; padding: 0; box-sizing: border-box; }
