@@ -281,7 +281,7 @@
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
-    nav { width: 100vw; }
+    /*nav { width: 100vw; }
     .nav-links { display: none; }
     .burger { display: flex; }
     section { padding: 60px 4%; }
@@ -296,7 +296,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(6, 18, 82,0.65); /* Темный фильтр 75% */
+        background: rgba(6, 18, 82,0.65);
         z-index: 1;}
     .hero h1 { font-size: 1.9rem; }
     .hero p { font-size: 0.95rem; }
@@ -315,11 +315,11 @@
         font-size: 0.9rem;
         letter-spacing: 1px;}
       .logo-text span {
-        font-size: 0.45rem; /* Было 0.55rem */
+        font-size: 0.45rem;
         letter-spacing: 1.5px;}
       .burger {
         margin-left: auto;}
-  }
+  }*/
   @media (max-width: 480px) {
     .hero-btns { flex-direction: column; }
     .btn-primary, .btn-outline { width: 100%; justify-content: center; }
