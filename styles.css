@@ -293,14 +293,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-   background: linear-gradient(to down, rgba(38,52,102,0.75) 40%, rgba(38,52,102,0) 60%);
-    z-index: 1;
-}
+    background: linear-gradient(to down, rgba(38,52,102,0.75) 40%, rgba(38,52,102,0) 60%); z-index: 1;}
     .hero::after { display: none; }
-    .hero-grid {
-        box-sizing: border-box;
-        width: 100%;
-    }
+    .hero-grid { box-sizing: border-box; width: 100%; }
     .hero h1 { font-size: 1.9rem; }
     .hero p { font-size: 0.95rem; }
     .hero-btns { flex-direction: column; }
