@@ -104,14 +104,14 @@
                 padding 0.3s ease;
     pointer-events: none;
   }
-  .mobile-menu.open {
+  /*.mobile-menu.open {
       display: flex;
     max-height: 500px;
     opacity: 1;
     transform: translateY(0);
     padding: 20px 4%;;
     pointer-events: all;
-  }
+  }*/
   .mobile-menu a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.3s, transform 0.2s; }
   .mobile-menu a:last-child { border-bottom: none; }
   .mobile-menu a:hover { color: var(--gold); transform: translateX(4px); }
