@@ -273,4 +273,76 @@
   .footer-col a:hover { color: var(--gold); }
   .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.35); }
 
- 
+ @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-visual { order: -1; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid::before { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    /* NAV */
+    nav {
+        padding: 0 16px;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+    .nav-links { display: none !important; }
+    .burger { display: flex !important; }
+    .mobile-menu { left: 0; right: 0; box-sizing: border-box; }
+
+    /* ОБЩЕЕ */
+    section { padding: 60px 16px; }
+
+    /* HERO */
+    .hero {
+        background-image: url('download (29).png');
+        background-position: top center;
+        padding: 100px 16px 50px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .hero::after { display: none; }
+    .hero-grid {
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .hero h1 { font-size: 1.9rem; }
+    .hero p { font-size: 0.95rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-num { font-size: 1.6rem; }
+    .stat-label { font-size: 0.7rem; }
+
+    /* SERVICES */
+    .tab-content.active { grid-template-columns: 1fr; }
+
+    /* STEPS */
+    .steps-grid { grid-template-columns: 1fr; }
+
+    /* WHY */
+    .why-features { grid-template-columns: 1fr; }
+
+    /* REVIEWS */
+    .reviews-grid { grid-template-columns: 1fr; }
+
+    /* CONTACT */
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-card { padding: 28px 16px; }
+
+    /* FOOTER */
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .cta-btns { flex-direction: column; align-items: center; }
+    .hero-stats { gap: 6px; }
+    .stat-num { font-size: 1.4rem; }
+    .stat-label { font-size: 0.68rem; }
+}
