@@ -6,8 +6,75 @@
     <title>PORTUS LIBERA — Легализация в Польше</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #04070f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  #page-loader canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  #page-loader .ui {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    pointer-events: none;
+  }
+  #page-loader .logo {
+    width: clamp(78px, 14vw, 118px);
+    filter:
+      drop-shadow(0 0 28px rgba(191,150,115,.55))
+      drop-shadow(0 18px 40px rgba(0,0,0,.75));
+    animation: loader-float 4.8s ease-in-out infinite;
+  }
+  @keyframes loader-float {
+    0%,100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-10px) rotate(2deg); }
+  }
+  .loader-dots { display: flex; gap: 10px; align-items: center; }
+  .loader-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    opacity: .28; animation: loader-pulse 1.6s ease-in-out infinite;
+  }
+  .loader-dot:nth-child(1) { background: #BF9673; }
+  .loader-dot:nth-child(2) { background: #C7212C; animation-delay: .2s; }
+  .loader-dot:nth-child(3) { background: #263466; animation-delay: .4s; }
+  @keyframes loader-pulse {
+    0%,100% { opacity: .28; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.9); }
+  }
+</style>
 </head>
 <body>
+    <div id="page-loader">
+  <canvas id="loader-canvas"></canvas>
+  <div class="ui">
+    <img class="logo" src="/path/to/logo.png" alt="" />
+    <div class="loader-dots">
+      <span class="loader-dot"></span>
+      <span class="loader-dot"></span>
+      <span class="loader-dot"></span>
+    </div>
+  </div>
+</div>
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#" class="logo">
@@ -495,5 +562,78 @@
 </footer>
 
 <script src="script.js"></script>
+    <script>
+(function () {
+  const cv = document.getElementById('loader-canvas');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, t = 0, rafId;
+
+  function resize() {
+    W = cv.width = window.innerWidth;
+    H = cv.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function drawBackground(time) {
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#04070f');
+    g.addColorStop(0.45, '#071428');
+    g.addColorStop(1, '#02040a');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.save();
+    ctx.globalCompositeOperation = 'screen';
+    const cx = W * (0.5 + Math.sin(time * 0.25) * 0.06);
+    const cy = H * (0.25 + Math.cos(time * 0.22) * 0.05);
+    const r  = Math.max(W, H) * 0.9;
+    const haze = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    haze.addColorStop(0,    'rgba(120,160,255,0.10)');
+    haze.addColorStop(0.35, 'rgba(40,90,160,0.06)');
+    haze.addColorStop(1,    'rgba(0,0,0,0)');
+    ctx.fillStyle = haze;
+    ctx.fillRect(0, 0, W, H);
+    ctx.restore();
+
+    const v = ctx.createRadialGradient(W/2, H/2, Math.min(W,H)*0.15, W/2, H/2, Math.max(W,H)*0.72);
+    v.addColorStop(0, 'rgba(0,0,0,0)');
+    v.addColorStop(1, 'rgba(0,0,0,0.65)');
+    ctx.fillStyle = v;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.globalAlpha = 0.035;
+    for (let i = 0; i < 220; i++) {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(Math.random()*W, Math.random()*H, Math.random()*2+0.6, Math.random()*2+0.6);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function loop() {
+    t += 1 / 60;
+    ctx.clearRect(0, 0, W, H);
+    drawBackground(t);
+    rafId = requestAnimationFrame(loop);
+  }
+  loop();
+
+  // Hide loader when page is fully loaded
+  function hideLoader() {
+    const loader = document.getElementById('page-loader');
+    loader.classList.add('hidden');
+    setTimeout(() => {
+      loader.remove();
+      cancelAnimationFrame(rafId);
+    }, 700);
+  }
+
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+  }
+})();
+</script>
 </body>
 </html>
