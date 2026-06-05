@@ -1,639 +1,700 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTUS LIBERA — Легализация в Польше</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-  #page-loader {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: #263466;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-  }
-  #page-loader.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-  #page-loader canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  #page-loader .ui {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-    pointer-events: none;
-  }
-  #page-loader .logo {
-    width: clamp(78px, 14vw, 118px);
-    filter:
-      drop-shadow(0 0 28px rgba(191,150,115,.55))
-      drop-shadow(0 18px 40px rgba(0,0,0,.75));
-    animation: loader-float 4.8s ease-in-out infinite;
-  }
-  @keyframes loader-float {
-    0%,100% { transform: translateY(0) rotate(-2deg); }
-    50%      { transform: translateY(-10px) rotate(2deg); }
-  }
-  .loader-dots { display: flex; gap: 10px; align-items: center; }
-  .loader-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    opacity: .28; animation: loader-pulse 1.6s ease-in-out infinite;
-  }
-  .loader-dot:nth-child(1) { background: #BF9673; }
-  .loader-dot:nth-child(2) { background: #C7212C; animation-delay: .2s; }
-  .loader-dot:nth-child(3) { background: #263466; animation-delay: .4s; }
-  @keyframes loader-pulse {
-    0%,100% { opacity: .28; transform: scale(1); }
-    50%      { opacity: 1;   transform: scale(1.9); }
-  }
-</style>
-</head>
-<body>
-    <div id="page-loader">
-  <canvas id="loader-canvas"></canvas>
-  <div class="ui">
-    <img class="logo" src="logo.png" alt="" />
-    <div class="loader-dots">
-      <span class="loader-dot"></span>
-      <span class="loader-dot"></span>
-      <span class="loader-dot"></span>
-    </div>
-  </div>
-</div>
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a href="#" class="logo">
-      <img src="logo.png" width="36" height="44" alt="Portus Libera">
-    <div class="logo-text">
-      PORTUS LIBERA
-    </div>
-  </a>
- <ul class="nav-links">
-    <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
-    <li><a href="#how" data-i18n="nav_how">Как работаем</a></li>
-    <li><a href="#why" data-i18n="nav_why">О нас</a></li>
-    <li><a href="#contact" class="nav-cta animate-on-scroll" data-i18n="nav_cta">Получить консультацию</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn" onclick="setLang('ua')">UA</button>
-        <button class="lang-btn active" onclick="setLang('ru')">RU</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-      </div>
-    </li>
-  </ul>
- <div class="burger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav> 
-
-<div class="mobile-menu animate-on-scroll" id="mobileMenu">
-  <div class="mobile-lang">
-    <button class="lang-btn" onclick="setLang('ua');toggleMenu()">UA</button>
-    <button class="lang-btn active" onclick="setLang('ru');toggleMenu()">RU</button>
-    <button class="lang-btn" onclick="setLang('en');toggleMenu()">EN</button>
-  </div>
-  <a href="#services" onclick="toggleMenu()" data-i18n="nav_services">Услуги</a>
-  <a href="#how" onclick="toggleMenu()" data-i18n="nav_how">Как работаем</a>
-  <a href="#why" onclick="toggleMenu()" data-i18n="nav_why">О нас</a>
-  <a href="#contact" onclick="toggleMenu()" data-i18n="nav_cta">📞 Получить консультацию</a>
-</div>
-
-<!-- HERO -->
-<section class="hero animate-on-scroll" id="home">
-  <div class="hero-grid">
-    <div class="hero-content">
-      <div class="hero-badge"> <span data-i18n="hero_badge">Легализация в Польше</span></div>
-      <h1 data-i18n="hero_h1">Ваш надёжный<br>путь к <span class="accent">легальному</span><br>статусу в Польше</h1>
-      <p data-i18n="hero_p">Помогаем иностранцам оформить карту побыта, замену прав, мельдунек и другие документы. Быстро, профессионально, без стресса.</p>
-      <div class="hero-btns">
-        <a href="#contact" class="btn-primary" data-i18n="hero_btn1">Получить консультацию →</a>
-        <a href="#services" class="btn-outline" data-i18n="hero_btn2">Наши услуги</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">5000+</div>
-          <div class="stat-label" data-i18n="stat1">Клиентов<br>помогли</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">98%</div>
-          <div class="stat-label" data-i18n="stat2">Успешных<br>дел</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">7+</div>
-          <div class="stat-label" data-i18n="stat3">Лет<br>опыта</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services animate-on-scroll" id="services">
-  <div class="section-header">
-    <div class="section-tag" data-i18n="serv_tag">Наши услуги</div>
-    <h2 data-i18n="serv_h2">Полный спектр услуг<br>по легализации</h2>
-    <p data-i18n="serv_p">Выберите категорию и найдите нужную услугу с прозрачными ценами</p>
-    <div class="divider"></div>
-  </div>
-  <div class="tabs-wrapper animate-on-scroll">
-    <div class="tabs-scroll">
-      <button class="tab-btn active" onclick="showTab('pobyt')" data-i18n="tab_pobyt">🏠 Карта побыта</button>
-      <button class="tab-btn" onclick="showTab('prava')" data-i18n="tab_prava">🚗 Водительские права</button>
-      <button class="tab-btn" onclick="showTab('rezid')" data-i18n="tab_rezid">🏛️ Резидентство</button>
-      <button class="tab-btn" onclick="showTab('meld')" data-i18n="tab_meld">📍 Мельдунек</button>
-      <button class="tab-btn" onclick="showTab('umejsc')" data-i18n="tab_umejsc">📄 Умейсцование</button>
-      <button class="tab-btn" onclick="showTab('arenda')" data-i18n="tab_arenda">🏡 Аренда жилья</button>
-      <button class="tab-btn" onclick="showTab('online')" data-i18n="tab_online">💻 Онлайн-консультация</button>
-      <button class="tab-btn" onclick="showTab('chek')" data-i18n="tab_chek">✅ Чек-листы</button>
-    </div>
-
-    <!-- Карта побыта -->
-    <div class="tab-content active" id="tab-pobyt">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="p1_h">Консультация «С чего начать»</h4>
-        <p data-i18n="p1_p">Разбор ситуации клиента, выбор типа карты побыта, объяснение процесса</p>
-        <div class="service-meta"><span class="service-price">300 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="p2_h">Подготовка документов</h4>
-        <p data-i18n="p2_p">Проверка всех документов, составление чек-листа, подготовка копий и сканов</p>
-        <div class="service-meta"><span class="service-price">500 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="p3_h">Сопровождение подачи</h4>
-        <p data-i18n="p3_p">Полная поддержка при подаче документов, контроль процесса</p>
-        <div class="service-meta"><span class="service-price">900 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="p4_h">Исправление ошибок и повторная подача</h4>
-        <p data-i18n="p4_p">Работа с документами, которые вернул уженд</p>
-        <div class="service-meta"><span class="service-price">600 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
-        <h4 data-i18n="p5_h">Пакет «Под ключ»</h4>
-        <p data-i18n="p5_p">Консультация + подготовка документов + сопровождение подачи</p>
-        <div class="service-meta"><span class="service-price">1500 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Водительские права -->
-    <div class="tab-content" id="tab-prava">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="dr1_h">Консультация</h4>
-        <p data-i18n="dr1_p">Разбор процесса замены прав</p>
-        <div class="service-meta"><span class="service-price">250 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="dr2_h">Подготовка документов</h4>
-        <p data-i18n="dr2_p">Проверка и сбор документов</p>
-        <div class="service-meta"><span class="service-price">500 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="dr3_h">Сопровождение</h4>
-        <p data-i18n="dr3_p">Полное сопровождение процесса замены прав</p>
-        <div class="service-meta"><span class="service-price">700 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
-        <h4 data-i18n="dr4_h">Пакет «Под ключ»</h4>
-        <p data-i18n="dr4_p">Консультация + подготовка документов + сопровождение</p>
-        <div class="service-meta"><span class="service-price">900 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Резидентство -->
-    <div class="tab-content" id="tab-rezid">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="r1_h">Консультация</h4>
-        <p data-i18n="r1_p">Разбор ситуации и требований для резидентства/гражданства</p>
-        <div class="service-meta"><span class="service-price">350 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="r2_h">Подготовка документов</h4>
-        <p data-i18n="r2_p">Проверка документов, подготовка к подаче</p>
-        <div class="service-meta"><span class="service-price">700 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="r3_h">Сопровождение</h4>
-        <p data-i18n="r3_p">Полное сопровождение процесса подачи</p>
-        <div class="service-meta"><span class="service-price">900 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
-        <h4 data-i18n="r4_h">Пакет «Под ключ»</h4>
-        <p data-i18n="r4_p">Консультация + подготовка документов + сопровождение подачи</p>
-        <div class="service-meta"><span class="service-price">1800 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Мельдунек -->
-    <div class="tab-content" id="tab-meld">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="m1_h">Консультация</h4>
-        <p data-i18n="m1_p">Объяснение процесса регистрации</p>
-        <div class="service-meta"><span class="service-price">200 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="m2_h">Подготовка документов</h4>
-        <p data-i18n="m2_p">Проверка договора аренды и документов</p>
-        <div class="service-meta"><span class="service-price">250 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="m3_h">Сопровождение</h4>
-        <p data-i18n="m3_p">Помощь при регистрации (zameldowanie)</p>
-        <div class="service-meta"><span class="service-price">300 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
-        <h4 data-i18n="m4_h">Пакет «Под ключ»</h4>
-        <p data-i18n="m4_p">Консультация + подготовка + сопровождение</p>
-        <div class="service-meta"><span class="service-price">500 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" style="background:var(--gold);color:var(--blue)" data-i18n="badge_spec">⭐ Спец</div>
-        <h4 data-i18n="m5_h">Пакет «Под ключ» + наш адрес</h4>
-        <p data-i18n="m5_p">Консультация + подготовка + сопровождение + 1 месяц мельдунка на наш адрес</p>
-        <div class="service-meta"><span class="service-price">700 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Умейсцование -->
-    <div class="tab-content" id="tab-umejsc">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="u1_h">Консультация</h4>
-        <p data-i18n="u1_p">Объяснение процесса umiejscowienia (свидетельства, браки и т.д.)</p>
-        <div class="service-meta"><span class="service-price">200 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="u2_h">Подготовка документов</h4>
-        <p data-i18n="u2_p">Сбор, переводы, проверка</p>
-        <div class="service-meta"><span class="service-price">500 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="u3_h">Сопровождение</h4>
-        <p data-i18n="u3_p">Подача документов и контроль процесса</p>
-        <div class="service-meta"><span class="service-price">600 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
-        <h4 data-i18n="u4_h">Пакет «Под ключ»</h4>
-        <p data-i18n="u4_p">Полный процесс от консультации до результата</p>
-        <div class="service-meta"><span class="service-price">800 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Аренда жилья -->
-    <div class="tab-content" id="tab-arenda">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="a1_h">Консультация</h4>
-        <p data-i18n="a1_p">Как искать жильё, на что обращать внимание</p>
-        <div class="service-meta"><span class="service-price">200 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="a2_h">Созвон с арендодателем</h4>
-        <p data-i18n="a2_p">Общение с владельцем квартиры от имени клиента</p>
-        <div class="service-meta"><span class="service-price">250 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="a3_h">Сопровождение сделки</h4>
-        <p data-i18n="a3_p">Проверка договора, помощь при подписании</p>
-        <div class="service-meta"><span class="service-price">500 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
-        <h4 data-i18n="a4_h">Пакет «Под ключ»</h4>
-        <p data-i18n="a4_p">Поиск + переговоры + сопровождение сделки</p>
-        <div class="service-meta"><span class="service-price">1000 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Онлайн -->
-    <div class="tab-content" id="tab-online">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="on1_h">Видео/звонок</h4>
-        <p data-i18n="on1_p">Разбор вопросов, проверка документов, рекомендации. Удобно из любой точки мира.</p>
-        <div class="service-meta"><span class="service-price">300 PLN</span></div>
-      </div>
-    </div>
-
-    <!-- Чек-листы -->
-    <div class="tab-content" id="tab-chek">
-      <div class="service-card stagger-item">
-        <h4 data-i18n="ch1_h">Чек-лист по картам побыта</h4>
-        <p data-i18n="ch1_p">Готовый список документов и инструкции по заполнению</p>
-        <div class="service-meta"><span class="service-price">150–250 PLN</span></div>
-      </div>
-      <div class="service-card stagger-item">
-        <h4 data-i18n="ch2_h">Чек-лист по переезду</h4>
-        <p data-i18n="ch2_p">Список шагов и документов для переезда в Польшу</p>
-        <div class="service-meta"><span class="service-price">300 PLN</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="section-header animate-on-scroll">
-    <div class="section-tag" data-i18n="how_tag">Процесс</div>
-    <h2 data-i18n="how_h2">Как мы работаем</h2>
-    <p data-i18n="how_p">Простой и прозрачный процесс от первого обращения до результата</p>
-    <div class="divider animate-on-scroll"></div>
-  </div>
-  <div class="steps-grid animate-on-scroll">
-    <div class="step-card animate-on-scroll">
-      <div class="step-num animate-on-scroll">1</div>
-      <h4 data-i18n="step1_h">Заявка</h4>
-      <p data-i18n="step1_p">Оставьте заявку на сайте или напишите нам. Ответим в течение 1 часа.</p>
-    </div>
-    <div class="step-card animate-on-scroll">
-      <div class="step-num">2</div>
-      <h4 data-i18n="step2_h">Консультация</h4>
-      <p data-i18n="step2_p">Разбираем вашу ситуацию, определяем нужные документы и план действий.</p>
-    </div>
-    <div class="step-card animate-on-scroll">
-      <div class="step-num">3</div>
-      <h4 data-i18n="step3_h">Подготовка</h4>
-      <p data-i18n="step3_p">Собираем, проверяем и готовим все необходимые документы.</p>
-    </div>
-    <div class="step-card animate-on-scroll">
-      <div class="step-num">4</div>
-      <h4 data-i18n="step4_h">Результат</h4>
-      <p data-i18n="step4_p">Сопровождаем подачу и контролируем процесс до получения документа.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why animate-on-scroll" id="why">
-  <div class="why-grid animate-on-scroll">
-    <div class="why-features animate-on-scroll">
-      <div class="section-header animate-on-scroll" style="text-align:left; margin-bottom:28px; grid-column: 1/-1;">
-        <div class="section-tag animate-on-scroll" data-i18n="why_tag">Почему мы</div>
-        <h2 style="font-size:1.9rem;" data-i18n="why_h2">Ваш надёжный партнёр в Польше</h2>
-        <div class="divider animate-on-scroll" style="margin:12px 0 0;"></div>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon animate-on-scroll">⚡</div>
-        <h4 data-i18n="feat1_h">Быстро</h4>
-        <p data-i18n="feat1_p">Работаем оперативно, соблюдаем сроки и держим вас в курсе</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon animate-on-scroll">🛡️</div>
-        <h4 data-i18n="feat2_h">Надёжно</h4>
-        <p data-i18n="feat2_p">98% успешных дел. Работаем только в рамках закона</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon animate-on-scroll">💬</div>
-        <h4 data-i18n="feat3_h">На вашем языке</h4>
-        <p data-i18n="feat3_p">Консультируем на русском, украинском и польском</p>
-      </div>
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon animate-on-scroll">💰</div>
-        <h4 data-i18n="feat4_h">Прозрачные цены</h4>
-        <p data-i18n="feat4_p">Никаких скрытых платежей. Цена фиксируется заранее</p>
-      </div>
-    </div>
-    <div class="why-visual animate-on-scroll">
-   <h3 data-i18n="trust_h" class="animate-on-scroll">Наши гарантии</h3>
-      <div class="trust-item stagger-item"><div class="trust-check">✓</div><span data-i18n="trust1">Официальная деятельность в Польше</span></div>
-      <div class="trust-item stagger-item"><div class="trust-check">✓</div><span data-i18n="trust2">Более 5000 успешно оформленных документов</span></div>
-      <div class="trust-item stagger-item"><div class="trust-check">✓</div><span data-i18n="trust3">Индивидуальный подход к каждому клиенту</span></div>
-      <div class="trust-item stagger-item"><div class="trust-check">✓</div><span data-i18n="trust4">Поддержка на всех этапах процесса</span></div>
-      <div class="trust-item stagger-item"><div class="trust-check">✓</div><span data-i18n="trust5">Работаем с любыми типами документов</span></div>
-      <div class="trust-item stagger-item"><div class="trust-check">✓</div><span data-i18n="trust6">Онлайн-консультации для клиентов из любой страны</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section animate-on-scroll">
-  <h2 data-i18n="cta_h2">Готовы начать?</h2>
-  <p data-i18n="cta_p">Оставьте заявку сейчас и получите бесплатную первичную консультацию</p>
-  <div class="cta-btns animate-on-scroll">
-    <a href="#contact" class="btn-primary" data-i18n="cta_btn1">Оставить заявку →</a>
-    <a href="tel:+48882166271" class="btn-outline" data-i18n="cta_btn2">📞 Позвонить нам</a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact animate-on-scroll" id="contact">
-  <div class="contact-grid animate-on-scroll">
-    <div class="contact-info animate-on-scroll">
-      <h3 data-i18n="cont_h3">Свяжитесь с нами</h3>
-      <p data-i18n="cont_p">Оставьте заявку и мы свяжемся с вами в течение 1 часа в рабочее время</p>
-      <div class="contact-item animate-on-scroll">
-        <div class="contact-icon animate-on-scroll">📞</div>
-        <div class="contact-item-text animate-on-scroll">
-          <strong data-i18n="cont_phone_label">Телефон</strong>
-          <span>+48 882 166 271</span>
-        </div>
-      </div>
-      <div class="contact-item animate-on-scroll">
-        <div class="contact-icon animate-on-scroll">✉️</div>
-        <div class="contact-item-text animate-on-scroll">
-          <strong data-i18n="cont_email_label2">Email</strong>
-          <span>ms@portuslibera.com</span>
-        </div>
-      </div>
-      <div class="contact-item animate-on-scroll">
-        <div class="contact-icon animate-on-scroll">📍</div>
-        <div class="contact-item-text animate-on-scroll">
-          <strong data-i18n="cont_addr_label">Адрес</strong>
-          <span>Plac Rodła 8, Lok. 1011, 70-419 Szczecin</span>
-        </div>
-      </div>
-      <div class="contact-item animate-on-scroll">
-        <div class="contact-icon animate-on-scroll">🕐</div>
-        <div class="contact-item-text animate-on-scroll">
-          <strong data-i18n="cont_hours_label">Часы работы</strong>
-          <span data-i18n="cont_hours_val">Пн–Пт: 09:00–17:00</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-card animate-on-scroll">
-      <h3 data-i18n="form_h3">Оставить заявку</h3>
-      <form onsubmit="submitForm(event)">
-        <div class="form-row">
-          <div class="form-group stagger-item">
-            <label data-i18n="form_name">Ваше имя *</label>
-            <input type="text" data-i18n-placeholder="form_name_ph" placeholder="Иван Иванов" required>
-          </div>
-          <div class="form-group stagger-item">
-            <label data-i18n="form_phone">Телефон *</label>
-            <input type="tel" placeholder="+48 882 166 271" required>
-          </div>
-        </div>
-        <div class="form-group stagger-item">
-          <label data-i18n="form_email">Email</label>
-          <input type="email" data-i18n-placeholder="form_email_ph" placeholder="ivan@email.com">
-        </div>
-        <div class="form-group stagger-item">
-          <label data-i18n="form_service">Услуга *</label>
-          <select id="serviceSelect" required>
-            <option value="" data-i18n="form_service_ph">— Выберите категорию —</option>
-            <option value="pobyt" data-i18n="tab_pobyt">🏠 Карта побыта</option>
-            <option value="prava" data-i18n="tab_prava">🚗 Водительское удостоверение</option>
-            <option value="rezid" data-i18n="tab_rezid">🏛️ Резидентство</option>
-            <option value="meld" data-i18n="tab_meld">📍 Мельдунек</option>
-            <option value="umejsc" data-i18n="tab_umejsc">📄 Умейсцование</option>
-            <option value="arenda" data-i18n="tab_arenda">🏡 Аренда жилья</option>
-            <option value="online" data-i18n="tab_online">💻 Онлайн-консультация</option>
-            <option value="chek" data-i18n="tab_chek">✅ Чек-листы</option>
-          </select>
-        </div>
-        <div class="form-group stagger-item">
-          <label data-i18n="form_basis">Основание пребывания в Польше *</label>
-          <select id="basis-select" required onchange="toggleOtherBasis(this)">
-            <option value="" data-i18n="form_basis_ph">— Выберите основание —</option>
-            <option value="visa_work" data-i18n="basis_visa_work">🛂 Рабочая виза (D-тип)</option>
-            <option value="visa_tourist" data-i18n="basis_visa_tourist">✈️ Туристическая виза (C-тип)</option>
-            <option value="bezwizowo" data-i18n="basis_bezwiz">🆓 Безвизовый въезд</option>
-            <option value="karta_pobyt" data-i18n="basis_karta_tmp">🏠 Карта побыта (временная)</option>
-            <option value="karta_staly" data-i18n="basis_karta_perm">🏛️ Карта побыта (постоянная)</option>
-            <option value="karta_rezyd" data-i18n="basis_rezyd">🇪🇺 Карта резидента ЕС</option>
-            <option value="ochrona" data-i18n="basis_ochrona">🛡️ Временная защита (УКР)</option>
-            <option value="azyl" data-i18n="basis_azyl">📋 Статус беженца / убежище</option>
-            <option value="student" data-i18n="basis_student">🎓 Студенческая виза / учёба</option>
-            <option value="other" data-i18n="basis_other">❓ Другое</option>
-          </select>
-        </div>
-        <div class="form-group stagger-item" id="other-basis-group" style="display:none;">
-          <label data-i18n="form_other_label">Опишите ваше основание *</label>
-          <textarea id="other-basis-text" data-i18n-placeholder="form_other_ph" placeholder="Опишите вашу ситуацию подробнее..." rows="3"></textarea>
-        </div>
-        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="form_submit">Отправить заявку →</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid animate-on-scroll">
-    <div class="footer-brand">
-      <a href="#" class="logo">
-        <div class="logo-text" style="color:white;">PORTUS LIBERA<span data-i18n="nav_tagline">ЛЕГАЛИЗАЦИЯ В ПОЛЬШЕ</span></div>
-      </a>
-      <p data-i18n="footer_brand_p">Профессиональная помощь в легализации иностранцев в Польше</p>
-    </div>
-    <div class="footer-col stagger-item">
-      <h5 data-i18n="footer_serv">Услуги</h5>
-      <a href="#services" data-i18n="tab_pobyt">🏠 Карта побыта</a>
-      <a href="#services" data-i18n="tab_prava">🚗 Водительские права</a>
-      <a href="#services" data-i18n="tab_rezid">🏛️ Резидентство</a>
-      <a href="#services" data-i18n="tab_meld">📍 Мельдунек</a>
-      <a href="#services" data-i18n="tab_arenda">🏡 Аренда жилья</a>
-    </div>
-    <div class="footer-col stagger-item">
-      <h5 data-i18n="footer_company">Компания</h5>
-      <a href="#why" data-i18n="nav_why">О нас</a>
-      <a href="#how" data-i18n="nav_how">Как работаем</a>
-      <a href="#contact" data-i18n="footer_contacts">Контакты</a>
-    </div>
-    <div class="footer-col stagger-item">
-      <h5 data-i18n="footer_contacts">Контакты</h5>
-      <a href="tel:+48882166271">+48 882 166 271</a>
-      <!--<a href="mailto:oo@portuslibera.com">oo@portuslibera.com (Лена)</a>-->
-      <a href="mailto:ms@portuslibera.com">ms@portuslibera.com</a>
-    </div>
-  </div>
-  <div class="footer-bottom stagger-item">
-    <span data-i18n="footer_copy">© 2025 PORTUS LIBERA Sp. z o.o. Все права защищены.</span>
-    <span>Plac Rodła 8, Lok. 1011, 70-419 Szczecin</span>
-  </div>
-</footer>
-
-<script src="script.js"></script>
-    <script>
-(function () {
-  const cv = document.getElementById('loader-canvas');
-  const ctx = cv.getContext('2d');
-  let W = 0, H = 0, t = 0, rafId;
-
-  function resize() {
-    W = cv.width = window.innerWidth;
-    H = cv.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  function drawBackground(time) {
-    const g = ctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, '#04070f');
-    g.addColorStop(0.45, '#071428');
-    g.addColorStop(1, '#02040a');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, H);
-
-    ctx.save();
-    ctx.globalCompositeOperation = 'screen';
-    const cx = W * (0.5 + Math.sin(time * 0.25) * 0.06);
-    const cy = H * (0.25 + Math.cos(time * 0.22) * 0.05);
-    const r  = Math.max(W, H) * 0.9;
-    const haze = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-    haze.addColorStop(0,    'rgba(120,160,255,0.10)');
-    haze.addColorStop(0.35, 'rgba(40,90,160,0.06)');
-    haze.addColorStop(1,    'rgba(0,0,0,0)');
-    ctx.fillStyle = haze;
-    ctx.fillRect(0, 0, W, H);
-    ctx.restore();
-
-    const v = ctx.createRadialGradient(W/2, H/2, Math.min(W,H)*0.15, W/2, H/2, Math.max(W,H)*0.72);
-    v.addColorStop(0, 'rgba(0,0,0,0)');
-    v.addColorStop(1, 'rgba(0,0,0,0.65)');
-    ctx.fillStyle = v;
-    ctx.fillRect(0, 0, W, H);
-
-    ctx.globalAlpha = 0.035;
-    for (let i = 0; i < 220; i++) {
-      ctx.fillStyle = '#000';
-      ctx.fillRect(Math.random()*W, Math.random()*H, Math.random()*2+0.6, Math.random()*2+0.6);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTUS LIBERA — Легализация в Польше</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #263466;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-    ctx.globalAlpha = 1;
-  }
 
-  function loop() {
-    t += 1 / 60;
-    ctx.clearRect(0, 0, W, H);
-    drawBackground(t);
-    rafId = requestAnimationFrame(loop);
-  }
-  loop();
+    #page-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-  // Hide loader when page is fully loaded
-  function hideLoader() {
-    const loader = document.getElementById('page-loader');
-    loader.classList.add('hidden');
-    setTimeout(() => {
-      loader.remove();
-      cancelAnimationFrame(rafId);
-    }, 700);
-  }
+    #page-loader canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
-  }
-})();
-</script>
+    #page-loader .ui {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      pointer-events: none;
+    }
+
+    #page-loader .logo {
+      width: clamp(78px, 14vw, 118px);
+      filter:
+        drop-shadow(0 0 28px rgba(191, 150, 115, .55)) drop-shadow(0 18px 40px rgba(0, 0, 0, .75));
+      animation: loader-float 4.8s ease-in-out infinite;
+    }
+
+    @keyframes loader-float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(2deg);
+      }
+    }
+
+    .loader-dots {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .loader-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      opacity: .28;
+      animation: loader-pulse 1.6s ease-in-out infinite;
+    }
+
+    .loader-dot:nth-child(1) {
+      background: #BF9673;
+    }
+
+    .loader-dot:nth-child(2) {
+      background: #C7212C;
+      animation-delay: .2s;
+    }
+
+    .loader-dot:nth-child(3) {
+      background: #263466;
+      animation-delay: .4s;
+    }
+
+    @keyframes loader-pulse {
+
+      0%,
+      100% {
+        opacity: .28;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.9);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page-loader">
+    <canvas id="loader-canvas"></canvas>
+    <div class="ui">
+      <img class="logo" src="logo.png" alt="" />
+      <div class="loader-dots">
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+      </div>
+    </div>
+  </div>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#" class="logo">
+      <img src="logo.png" width="36" height="44" alt="Portus Libera">
+      <div class="logo-text">
+        PORTUS LIBERA
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
+      <li><a href="#how" data-i18n="nav_how">Как работаем</a></li>
+      <li><a href="#why" data-i18n="nav_why">О нас</a></li>
+      <li><a href="#contact" class="nav-cta animate-on-scroll" data-i18n="nav_cta">Получить консультацию</a></li>
+      <li>
+        <div class="lang-switcher">
+          <button class="lang-btn" onclick="setLang('ua')">UA</button>
+          <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+      </li>
+    </ul>
+    <div class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-menu animate-on-scroll" id="mobileMenu">
+    <div class="mobile-lang">
+      <button class="lang-btn" onclick="setLang('ua');toggleMenu()">UA</button>
+      <button class="lang-btn active" onclick="setLang('ru');toggleMenu()">RU</button>
+      <button class="lang-btn" onclick="setLang('en');toggleMenu()">EN</button>
+    </div>
+    <a href="#services" onclick="toggleMenu()" data-i18n="nav_services">Услуги</a>
+    <a href="#how" onclick="toggleMenu()" data-i18n="nav_how">Как работаем</a>
+    <a href="#why" onclick="toggleMenu()" data-i18n="nav_why">О нас</a>
+    <a href="#contact" onclick="toggleMenu()" data-i18n="nav_cta">📞 Получить консультацию</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-content">
+  <div class="hero-badge animate-on-scroll"><span data-i18n="hero_badge">Легализация в Польше</span></div>
+  <h1 class="animate-on-scroll" data-i18n="hero_h1">Ваш надёжный<br>путь к <span class="accent">легальному</span><br>статусу в Польше</h1>
+  <p class="animate-on-scroll" data-i18n="hero_p">Помогаем иностранцам оформить карту побыта, замену прав, мельдунек и другие документы. Быстро, профессионально, без стресса.</p>
+        <div class="hero-btns animate-on-scroll">
+    <a href="#contact" class="btn-primary" data-i18n="hero_btn1">Получить консультацию →</a>
+    <a href="#services" class="btn-outline" data-i18n="hero_btn2">Наши услуги</a>
+  </div>
+        <div class="hero-stats animate-on-scroll">
+          <div class="stat-item">
+            <div class="stat-num">5000+</div>
+            <div class="stat-label" data-i18n="stat1">Клиентов<br>помогли</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">98%</div>
+            <div class="stat-label" data-i18n="stat2">Успешных<br>дел</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">7+</div>
+            <div class="stat-label" data-i18n="stat3">Лет<br>опыта</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services animate-on-scroll" id="services">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="serv_tag">Наши услуги</div>
+      <h2 data-i18n="serv_h2">Полный спектр услуг<br>по легализации</h2>
+      <p data-i18n="serv_p">Выберите категорию и найдите нужную услугу с прозрачными ценами</p>
+      <div class="divider"></div>
+    </div>
+    <div class="tabs-wrapper animate-on-scroll">
+      <div class="tabs-scroll">
+        <button class="tab-btn active" onclick="showTab('pobyt')" data-i18n="tab_pobyt">🏠 Карта побыта</button>
+        <button class="tab-btn" onclick="showTab('prava')" data-i18n="tab_prava">🚗 Водительские права</button>
+        <button class="tab-btn" onclick="showTab('rezid')" data-i18n="tab_rezid">🏛️ Резидентство</button>
+        <button class="tab-btn" onclick="showTab('meld')" data-i18n="tab_meld">📍 Мельдунек</button>
+        <button class="tab-btn" onclick="showTab('umejsc')" data-i18n="tab_umejsc">📄 Умейсцование</button>
+        <button class="tab-btn" onclick="showTab('arenda')" data-i18n="tab_arenda">🏡 Аренда жилья</button>
+        <button class="tab-btn" onclick="showTab('online')" data-i18n="tab_online">💻 Онлайн-консультация</button>
+        <button class="tab-btn" onclick="showTab('chek')" data-i18n="tab_chek">✅ Чек-листы</button>
+      </div>
+
+      <!-- Карта побыта -->
+      <div class="tab-content active" id="tab-pobyt">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="p1_h">Консультация «С чего начать»</h4>
+          <p data-i18n="p1_p">Разбор ситуации клиента, выбор типа карты побыта, объяснение процесса</p>
+          <div class="service-meta"><span class="service-price">300 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="p2_h">Подготовка документов</h4>
+          <p data-i18n="p2_p">Проверка всех документов, составление чек-листа, подготовка копий и сканов</p>
+          <div class="service-meta"><span class="service-price">500 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="p3_h">Сопровождение подачи</h4>
+          <p data-i18n="p3_p">Полная поддержка при подаче документов, контроль процесса</p>
+          <div class="service-meta"><span class="service-price">900 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="p4_h">Исправление ошибок и повторная подача</h4>
+          <p data-i18n="p4_p">Работа с документами, которые вернул уженд</p>
+          <div class="service-meta"><span class="service-price">600 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
+          <h4 data-i18n="p5_h">Пакет «Под ключ»</h4>
+          <p data-i18n="p5_p">Консультация + подготовка документов + сопровождение подачи</p>
+          <div class="service-meta"><span class="service-price">1500 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Водительские права -->
+      <div class="tab-content" id="tab-prava">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="dr1_h">Консультация</h4>
+          <p data-i18n="dr1_p">Разбор процесса замены прав</p>
+          <div class="service-meta"><span class="service-price">250 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="dr2_h">Подготовка документов</h4>
+          <p data-i18n="dr2_p">Проверка и сбор документов</p>
+          <div class="service-meta"><span class="service-price">500 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="dr3_h">Сопровождение</h4>
+          <p data-i18n="dr3_p">Полное сопровождение процесса замены прав</p>
+          <div class="service-meta"><span class="service-price">700 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
+          <h4 data-i18n="dr4_h">Пакет «Под ключ»</h4>
+          <p data-i18n="dr4_p">Консультация + подготовка документов + сопровождение</p>
+          <div class="service-meta"><span class="service-price">900 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Резидентство -->
+      <div class="tab-content" id="tab-rezid">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="r1_h">Консультация</h4>
+          <p data-i18n="r1_p">Разбор ситуации и требований для резидентства/гражданства</p>
+          <div class="service-meta"><span class="service-price">350 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="r2_h">Подготовка документов</h4>
+          <p data-i18n="r2_p">Проверка документов, подготовка к подаче</p>
+          <div class="service-meta"><span class="service-price">700 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="r3_h">Сопровождение</h4>
+          <p data-i18n="r3_p">Полное сопровождение процесса подачи</p>
+          <div class="service-meta"><span class="service-price">900 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
+          <h4 data-i18n="r4_h">Пакет «Под ключ»</h4>
+          <p data-i18n="r4_p">Консультация + подготовка документов + сопровождение подачи</p>
+          <div class="service-meta"><span class="service-price">1800 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Мельдунек -->
+      <div class="tab-content" id="tab-meld">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="m1_h">Консультация</h4>
+          <p data-i18n="m1_p">Объяснение процесса регистрации</p>
+          <div class="service-meta"><span class="service-price">200 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="m2_h">Подготовка документов</h4>
+          <p data-i18n="m2_p">Проверка договора аренды и документов</p>
+          <div class="service-meta"><span class="service-price">250 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="m3_h">Сопровождение</h4>
+          <p data-i18n="m3_p">Помощь при регистрации (zameldowanie)</p>
+          <div class="service-meta"><span class="service-price">300 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
+          <h4 data-i18n="m4_h">Пакет «Под ключ»</h4>
+          <p data-i18n="m4_p">Консультация + подготовка + сопровождение</p>
+          <div class="service-meta"><span class="service-price">500 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" style="background:var(--gold);color:var(--blue)" data-i18n="badge_spec">⭐ Спец</div>
+          <h4 data-i18n="m5_h">Пакет «Под ключ» + наш адрес</h4>
+          <p data-i18n="m5_p">Консультация + подготовка + сопровождение + 1 месяц мельдунка на наш адрес</p>
+          <div class="service-meta"><span class="service-price">700 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Умейсцование -->
+      <div class="tab-content" id="tab-umejsc">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="u1_h">Консультация</h4>
+          <p data-i18n="u1_p">Объяснение процесса umiejscowienia (свидетельства, браки и т.д.)</p>
+          <div class="service-meta"><span class="service-price">200 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="u2_h">Подготовка документов</h4>
+          <p data-i18n="u2_p">Сбор, переводы, проверка</p>
+          <div class="service-meta"><span class="service-price">500 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="u3_h">Сопровождение</h4>
+          <p data-i18n="u3_p">Подача документов и контроль процесса</p>
+          <div class="service-meta"><span class="service-price">600 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
+          <h4 data-i18n="u4_h">Пакет «Под ключ»</h4>
+          <p data-i18n="u4_p">Полный процесс от консультации до результата</p>
+          <div class="service-meta"><span class="service-price">800 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Аренда жилья -->
+      <div class="tab-content" id="tab-arenda">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="a1_h">Консультация</h4>
+          <p data-i18n="a1_p">Как искать жильё, на что обращать внимание</p>
+          <div class="service-meta"><span class="service-price">200 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="a2_h">Созвон с арендодателем</h4>
+          <p data-i18n="a2_p">Общение с владельцем квартиры от имени клиента</p>
+          <div class="service-meta"><span class="service-price">250 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="a3_h">Сопровождение сделки</h4>
+          <p data-i18n="a3_p">Проверка договора, помощь при подписании</p>
+          <div class="service-meta"><span class="service-price">500 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <div class="hit-badge" data-i18n="badge_hit">🔥 Хит</div>
+          <h4 data-i18n="a4_h">Пакет «Под ключ»</h4>
+          <p data-i18n="a4_p">Поиск + переговоры + сопровождение сделки</p>
+          <div class="service-meta"><span class="service-price">1000 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Онлайн -->
+      <div class="tab-content" id="tab-online">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="on1_h">Видео/звонок</h4>
+          <p data-i18n="on1_p">Разбор вопросов, проверка документов, рекомендации. Удобно из любой точки мира.</p>
+          <div class="service-meta"><span class="service-price">300 PLN</span></div>
+        </div>
+      </div>
+
+      <!-- Чек-листы -->
+      <div class="tab-content" id="tab-chek">
+        <div class="service-card stagger-item">
+          <h4 data-i18n="ch1_h">Чек-лист по картам побыта</h4>
+          <p data-i18n="ch1_p">Готовый список документов и инструкции по заполнению</p>
+          <div class="service-meta"><span class="service-price">150–250 PLN</span></div>
+        </div>
+        <div class="service-card stagger-item">
+          <h4 data-i18n="ch2_h">Чек-лист по переезду</h4>
+          <p data-i18n="ch2_p">Список шагов и документов для переезда в Польшу</p>
+          <div class="service-meta"><span class="service-price">300 PLN</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag" data-i18n="how_tag">Процесс</div>
+      <h2 data-i18n="how_h2">Как мы работаем</h2>
+      <p data-i18n="how_p">Простой и прозрачный процесс от первого обращения до результата</p>
+      <div class="divider animate-on-scroll"></div>
+    </div>
+    <div class="steps-grid animate-on-scroll">
+      <div class="step-card animate-on-scroll">
+        <div class="step-num animate-on-scroll">1</div>
+        <h4 data-i18n="step1_h">Заявка</h4>
+        <p data-i18n="step1_p">Оставьте заявку на сайте или напишите нам. Ответим в течение 1 часа.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-num">2</div>
+        <h4 data-i18n="step2_h">Консультация</h4>
+        <p data-i18n="step2_p">Разбираем вашу ситуацию, определяем нужные документы и план действий.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-num">3</div>
+        <h4 data-i18n="step3_h">Подготовка</h4>
+        <p data-i18n="step3_p">Собираем, проверяем и готовим все необходимые документы.</p>
+      </div>
+      <div class="step-card animate-on-scroll">
+        <div class="step-num">4</div>
+        <h4 data-i18n="step4_h">Результат</h4>
+        <p data-i18n="step4_p">Сопровождаем подачу и контролируем процесс до получения документа.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why animate-on-scroll" id="why">
+    <div class="why-grid animate-on-scroll">
+      <div class="why-features animate-on-scroll">
+        <div class="section-header animate-on-scroll" style="text-align:left; margin-bottom:28px; grid-column: 1/-1;">
+          <div class="section-tag animate-on-scroll" data-i18n="why_tag">Почему мы</div>
+          <h2 style="font-size:1.9rem;" data-i18n="why_h2">Ваш надёжный партнёр в Польше</h2>
+          <div class="divider animate-on-scroll" style="margin:12px 0 0;"></div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon animate-on-scroll">⚡</div>
+          <h4 data-i18n="feat1_h">Быстро</h4>
+          <p data-i18n="feat1_p">Работаем оперативно, соблюдаем сроки и держим вас в курсе</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon animate-on-scroll">🛡️</div>
+          <h4 data-i18n="feat2_h">Надёжно</h4>
+          <p data-i18n="feat2_p">98% успешных дел. Работаем только в рамках закона</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon animate-on-scroll">💬</div>
+          <h4 data-i18n="feat3_h">На вашем языке</h4>
+          <p data-i18n="feat3_p">Консультируем на русском, украинском и польском</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon animate-on-scroll">💰</div>
+          <h4 data-i18n="feat4_h">Прозрачные цены</h4>
+          <p data-i18n="feat4_p">Никаких скрытых платежей. Цена фиксируется заранее</p>
+        </div>
+      </div>
+      <div class="why-visual animate-on-scroll">
+        <h3 data-i18n="trust_h" class="animate-on-scroll">Наши гарантии</h3>
+        <div class="trust-item stagger-item">
+          <div class="trust-check">✓</div><span data-i18n="trust1">Официальная деятельность в Польше</span>
+        </div>
+        <div class="trust-item stagger-item">
+          <div class="trust-check">✓</div><span data-i18n="trust2">Более 5000 успешно оформленных документов</span>
+        </div>
+        <div class="trust-item stagger-item">
+          <div class="trust-check">✓</div><span data-i18n="trust3">Индивидуальный подход к каждому клиенту</span>
+        </div>
+        <div class="trust-item stagger-item">
+          <div class="trust-check">✓</div><span data-i18n="trust4">Поддержка на всех этапах процесса</span>
+        </div>
+        <div class="trust-item stagger-item">
+          <div class="trust-check">✓</div><span data-i18n="trust5">Работаем с любыми типами документов</span>
+        </div>
+        <div class="trust-item stagger-item">
+          <div class="trust-check">✓</div><span data-i18n="trust6">Онлайн-консультации для клиентов из любой
+            страны</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section animate-on-scroll">
+    <h2 data-i18n="cta_h2">Готовы начать?</h2>
+    <p data-i18n="cta_p">Оставьте заявку сейчас и получите бесплатную первичную консультацию</p>
+    <div class="cta-btns animate-on-scroll">
+      <a href="#contact" class="btn-primary" data-i18n="cta_btn1">Оставить заявку →</a>
+      <a href="tel:+48882166271" class="btn-outline" data-i18n="cta_btn2">📞 Позвонить нам</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact animate-on-scroll" id="contact">
+    <div class="contact-grid animate-on-scroll">
+      <div class="contact-info animate-on-scroll">
+        <h3 data-i18n="cont_h3">Свяжитесь с нами</h3>
+        <p data-i18n="cont_p">Оставьте заявку и мы свяжемся с вами в течение 1 часа в рабочее время</p>
+        <div class="contact-item animate-on-scroll">
+          <div class="contact-icon animate-on-scroll">📞</div>
+          <div class="contact-item-text animate-on-scroll">
+            <strong data-i18n="cont_phone_label">Телефон</strong>
+            <span>+48 882 166 271</span>
+          </div>
+        </div>
+        <div class="contact-item animate-on-scroll">
+          <div class="contact-icon animate-on-scroll">✉️</div>
+          <div class="contact-item-text animate-on-scroll">
+            <strong data-i18n="cont_email_label2">Email</strong>
+            <span>ms@portuslibera.com</span>
+          </div>
+        </div>
+        <div class="contact-item animate-on-scroll">
+          <div class="contact-icon animate-on-scroll">📍</div>
+          <div class="contact-item-text animate-on-scroll">
+            <strong data-i18n="cont_addr_label">Адрес</strong>
+            <span>Plac Rodła 8, Lok. 1011, 70-419 Szczecin</span>
+          </div>
+        </div>
+        <div class="contact-item animate-on-scroll">
+          <div class="contact-icon animate-on-scroll">🕐</div>
+          <div class="contact-item-text animate-on-scroll">
+            <strong data-i18n="cont_hours_label">Часы работы</strong>
+            <span data-i18n="cont_hours_val">Пн–Пт: 09:00–17:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card animate-on-scroll">
+        <h3 data-i18n="form_h3">Оставить заявку</h3>
+        <form onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group stagger-item">
+              <label data-i18n="form_name">Ваше имя *</label>
+              <input type="text" data-i18n-placeholder="form_name_ph" placeholder="Иван Иванов" required>
+            </div>
+            <div class="form-group stagger-item">
+              <label data-i18n="form_phone">Телефон *</label>
+              <input type="tel" placeholder="+48 882 166 271" required>
+            </div>
+          </div>
+          <div class="form-group stagger-item">
+            <label data-i18n="form_email">Email</label>
+            <input type="email" data-i18n-placeholder="form_email_ph" placeholder="ivan@email.com">
+          </div>
+          <div class="form-group stagger-item">
+            <label data-i18n="form_service">Услуга *</label>
+            <select id="serviceSelect" required>
+              <option value="" data-i18n="form_service_ph">— Выберите категорию —</option>
+              <option value="pobyt" data-i18n="tab_pobyt">🏠 Карта побыта</option>
+              <option value="prava" data-i18n="tab_prava">🚗 Водительское удостоверение</option>
+              <option value="rezid" data-i18n="tab_rezid">🏛️ Резидентство</option>
+              <option value="meld" data-i18n="tab_meld">📍 Мельдунек</option>
+              <option value="umejsc" data-i18n="tab_umejsc">📄 Умейсцование</option>
+              <option value="arenda" data-i18n="tab_arenda">🏡 Аренда жилья</option>
+              <option value="online" data-i18n="tab_online">💻 Онлайн-консультация</option>
+              <option value="chek" data-i18n="tab_chek">✅ Чек-листы</option>
+            </select>
+          </div>
+          <div class="form-group stagger-item">
+            <label data-i18n="form_basis">Основание пребывания в Польше *</label>
+            <select id="basis-select" required onchange="toggleOtherBasis(this)">
+              <option value="" data-i18n="form_basis_ph">— Выберите основание —</option>
+              <option value="visa_work" data-i18n="basis_visa_work">🛂 Рабочая виза (D-тип)</option>
+              <option value="visa_tourist" data-i18n="basis_visa_tourist">✈️ Туристическая виза (C-тип)</option>
+              <option value="bezwizowo" data-i18n="basis_bezwiz">🆓 Безвизовый въезд</option>
+              <option value="karta_pobyt" data-i18n="basis_karta_tmp">🏠 Карта побыта (временная)</option>
+              <option value="karta_staly" data-i18n="basis_karta_perm">🏛️ Карта побыта (постоянная)</option>
+              <option value="karta_rezyd" data-i18n="basis_rezyd">🇪🇺 Карта резидента ЕС</option>
+              <option value="ochrona" data-i18n="basis_ochrona">🛡️ Временная защита (УКР)</option>
+              <option value="azyl" data-i18n="basis_azyl">📋 Статус беженца / убежище</option>
+              <option value="student" data-i18n="basis_student">🎓 Студенческая виза / учёба</option>
+              <option value="other" data-i18n="basis_other">❓ Другое</option>
+            </select>
+          </div>
+          <div class="form-group stagger-item" id="other-basis-group" style="display:none;">
+            <label data-i18n="form_other_label">Опишите ваше основание *</label>
+            <textarea id="other-basis-text" data-i18n-placeholder="form_other_ph"
+              placeholder="Опишите вашу ситуацию подробнее..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn" data-i18n="form_submit">Отправить заявку →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid animate-on-scroll">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-text" style="color:white;">PORTUS LIBERA<span data-i18n="nav_tagline">ЛЕГАЛИЗАЦИЯ В
+              ПОЛЬШЕ</span></div>
+        </a>
+        <p data-i18n="footer_brand_p">Профессиональная помощь в легализации иностранцев в Польше</p>
+      </div>
+      <div class="footer-col stagger-item">
+        <h5 data-i18n="footer_serv">Услуги</h5>
+        <a href="#services" data-i18n="tab_pobyt">🏠 Карта побыта</a>
+        <a href="#services" data-i18n="tab_prava">🚗 Водительские права</a>
+        <a href="#services" data-i18n="tab_rezid">🏛️ Резидентство</a>
+        <a href="#services" data-i18n="tab_meld">📍 Мельдунек</a>
+        <a href="#services" data-i18n="tab_arenda">🏡 Аренда жилья</a>
+      </div>
+      <div class="footer-col stagger-item">
+        <h5 data-i18n="footer_company">Компания</h5>
+        <a href="#why" data-i18n="nav_why">О нас</a>
+        <a href="#how" data-i18n="nav_how">Как работаем</a>
+        <a href="#contact" data-i18n="footer_contacts">Контакты</a>
+      </div>
+      <div class="footer-col stagger-item">
+        <h5 data-i18n="footer_contacts">Контакты</h5>
+        <a href="tel:+48882166271">+48 882 166 271</a>
+        <!--<a href="mailto:oo@portuslibera.com">oo@portuslibera.com (Лена)</a>-->
+        <a href="mailto:ms@portuslibera.com">ms@portuslibera.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom stagger-item">
+      <span data-i18n="footer_copy">© 2025 PORTUS LIBERA Sp. z o.o. Все права защищены.</span>
+      <span>Plac Rodła 8, Lok. 1011, 70-419 Szczecin</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      const cv = document.getElementById('loader-canvas');
+      const ctx = cv.getContext('2d');
+      let W = 0, H = 0, t = 0, rafId;
+
+      function resize() {
+        W = cv.width = window.innerWidth;
+        H = cv.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function drawBackground(time) {
+        const g = ctx.createLinearGradient(0, 0, 0, H);
+        g.addColorStop(0, '#04070f');
+        g.addColorStop(0.45, '#071428');
+        g.addColorStop(1, '#02040a');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        const cx = W * (0.5 + Math.sin(time * 0.25) * 0.06);
+        const cy = H * (0.25 + Math.cos(time * 0.22) * 0.05);
+        const r = Math.max(W, H) * 0.9;
+        const haze = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        haze.addColorStop(0, 'rgba(120,160,255,0.10)');
+        haze.addColorStop(0.35, 'rgba(40,90,160,0.06)');
+        haze.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = haze;
+        ctx.fillRect(0, 0, W, H);
+        ctx.restore();
+
+        const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.15, W / 2, H / 2, Math.max(W, H) * 0.72);
+        v.addColorStop(0, 'rgba(0,0,0,0)');
+        v.addColorStop(1, 'rgba(0,0,0,0.65)');
+        ctx.fillStyle = v;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.globalAlpha = 0.035;
+        for (let i = 0; i < 220; i++) {
+          ctx.fillStyle = '#000';
+          ctx.fillRect(Math.random() * W, Math.random() * H, Math.random() * 2 + 0.6, Math.random() * 2 + 0.6);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function loop() {
+        t += 1 / 60;
+        ctx.clearRect(0, 0, W, H);
+        drawBackground(t);
+        rafId = requestAnimationFrame(loop);
+      }
+      loop();
+
+      // Hide loader when page is fully loaded
+      function hideLoader() {
+        const loader = document.getElementById('page-loader');
+        loader.classList.add('hidden');
+        setTimeout(() => {
+          loader.remove();
+          cancelAnimationFrame(rafId);
+        }, 700);
+      }
+
+      if (document.readyState === 'complete') {
+        hideLoader();
+      } else {
+        window.addEventListener('load', hideLoader);
+      }
+    })();
+  </script>
 </body>
+
 </html>
